@@ -2,22 +2,15 @@
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
 anaconda-client=1.0.2=py34_0
-beautifulsoup4=4.4.1=py34_0
-binstar=0.12=2
 certifi=14.05.14=py34_0
 clyent=0.4.0=py34_0
-conda=3.18.3=py34_0
-conda-env=2.4.2=py34_0
 decorator=4.0.2=py34_0
-flask=0.10.1=py34_1
 freetype=2.5.2=2
 ipykernel=4.0.3=py34_0
 ipython=4.0.0=py34_0
 ipython-notebook=4.0.4=py34_0
 ipython_genutils=0.1.0=py34_0
-itsdangerous=0.24=py34_0
 jinja2=2.8=py34_0
-jpeg=8d=1
 jsonschema=2.4.0=py34_0
 jupyter_client=4.0.0=py34_0
 jupyter_core=4.0.4=py34_0
@@ -25,7 +18,6 @@ libpng=1.6.17=0
 libsodium=0.4.5=0
 libtiff=4.0.2=1
 markupsafe=0.23=py34_0
-matplotlib=1.4.3=np19py34_3
 mistune=0.7.1=py34_0
 nbconvert=4.0.0=py34_0
 nbformat=4.0.0=py34_0
@@ -48,7 +40,6 @@ pyparsing=2.0.3=py34_0
 pyqt=4.11.3=py34_0
 python=3.4.3=0
 python-dateutil=2.4.2=py34_0
-python.app=1.2=py34_4
 pytz=2015.6=py34_0
 pyyaml=3.11=py34_1
 pyzmq=14.7.0=py34_0
@@ -57,7 +48,6 @@ readline=6.2=2
 requests=2.8.1=py34_0
 scikit-learn=0.16.1=np19py34_0
 scipy=0.16.0=np19py34_1
-seaborn=0.6.0=np19py34_0
 setuptools=18.4=py34_0
 simplegeneric=0.8.1=py34_0
 sip=4.16.5=py34_0
