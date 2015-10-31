@@ -1,5 +1,7 @@
 # Fairness
 
+![Build Status](https://travis-ci.org/redshiftzero/fairness.svg)
+
 Algorithms are increasingly being used for decision making and risk assessment in a wide range of applications, from criminal justice to housing and employment. While algorithms are sometimes treated as impartial, it is important to evaluate how unbiased these systems really are. 
 
 It is also important to appreciate that discrimination is not necessarily negative. In some cases discrimination is necessary or even desired. Whether each case of discrimination is problematic depends on the situation in question. These metrics also cannot determine if discrimination is intentional or unintentional. 
