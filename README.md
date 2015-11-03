@@ -22,6 +22,10 @@ Based on Zemel et al., this metrics characterizes the degree of discrimination b
 
 Also based on Zemel et al., this metric characterizes the degree to which similar people are characterized similarly [TODO]. 
 
+### Relative Error Rates
+
+This metric measures if the algorithm in question has a higher error rate with respect to the protected class. Unevenly distributed errors are one way that algorithms can be discriminatory.
+
 ## Examples
 
 Clone the repo and make sure the requirements (in `requirements.conda`) are satisfied. 
@@ -42,6 +46,10 @@ Out[6]: 0.0
 ```
 
 You can infer then that this algorithm is then not-discriminatory with respect to gender.
+
+## Tests
+
+Unit tests in `tests` make use of an artificial dataset `tests/validation.csv`. The tests are run with `nosetests -v`. 
 
 ## References
 

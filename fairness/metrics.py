@@ -97,9 +97,50 @@ def individual_fairness(feature_df, model_outcome):
     value_discrim: float between 0-1 describing the degree of discrimination
     """
 
-    if len(protected_status) != len(model_outcome):
+    if len(feature_df) != len(model_outcome):
         raise ValueError('Input arrays do not have same number of entries')
 
     pass
+    num_items = len(model_outcome)
+    k = 3
+    sum_nearest_neighbs = 0.
+    value_discrim = 1. - 1./(num_items * k) * sum_nearest_neighbs
 
     return value_discrim
+
+
+def rel_error_rate(protected_status, model_outcome, truth_outcome):
+    """
+    This measures the fairness of the error distribution with respect to
+    a protected class. It returns the error rates in each protected class
+    as well as the relative error rates. Errors that are very unevenly
+    distributed is one manifestation of unfairness in algorithms.
+
+    Inputs
+    ------
+    protected_status: numpy ndarray
+    model_outcome: numpy ndarray
+    truth_outcome: numpy ndarray
+
+    Outputs
+    -------
+    error_rate: relative error rates
+    """
+
+    if (len(protected_status) != len(model_outcome) or
+       len(protected_status) != len(truth_outcome)):
+        raise ValueError('Input arrays do not have same number of entries')
+
+    indices_pos_class, = np.where(protected_status == 1)
+    indices_neg_class, = np.where(protected_status == 0)
+
+    outcomes_pos_wrong, = np.where(model_outcome[indices_pos_class] -
+                                   truth_outcome[indices_pos_class])
+    outcomes_neg_wrong, = np.where(model_outcome[indices_neg_class] -
+                                   truth_outcome[indices_neg_class])
+
+    pos_error_rate = len(outcomes_pos_wrong) / len(indices_pos_class)
+    neg_error_rate = len(outcomes_neg_wrong) / len(indices_neg_class)
+    error_rate = np.abs(pos_error_rate - neg_error_rate)
+
+    return error_rate, pos_error_rate, neg_error_rate
