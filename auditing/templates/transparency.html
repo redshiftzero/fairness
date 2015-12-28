@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fairness Report</title>
+    <link href="{{ url_for('static', filename='static/template.css') }}" rel="stylesheet">
+
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand active" href="home">Algo Audit</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="fairness">Fairness</a></li>
+            <li><a href="transparency">Transparency</a></li>
+            <li><a href="about">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+
+        <h1>Transparency and Accountability</h1>
+
+        <p class="lead">Your algorithm should satisfy due process and accountability best practices for human-centered prediction.</p>
+
+        <div class="main">
+        <h2>Data <small>Give users control over their data</small></h2>
+        <hr>
+            <div class="row">
+              <div class="col-lg-12">
+              <h4>What data has been collected about an individual? </h4>
+              <p>Users should be able to examine in total what has been collected about them. </p>
+
+              <h4>Error Correction</h4>
+              <p>Users should be able to easily request that erroneous data be corrected.</p>
+
+              <h4>Opt Out</h4>
+              <p>Consider allowing users to turn off some data collection, and specify which data will still be collected after opt out.</p>
+              </div>
+            </div><!-- /.row -->
+ 
+        <h2>Inference <small>Give users control over the inferences made about them</small></h2>
+        <hr>
+
+            <div class="row">
+              <div class="col-lg-12">
+              <h4>When is prediction/personalization used?</h4>
+              <p>Users should understand where and when prediction is taking place.</p>
+
+              <h4>What inferences have been made about an individual? </h4>
+              <p>Users should be able to see <b>all</b> inferences that have been made about them - including inferences that may be seen as "creepy" or undesirable.</p>
+
+              <h4>What led to each decision?</h4>
+              <p>Give a ranking of human understandable attributes that led to this decision. This may not be possible for several reasons: <ul>
+              <li>Concerns over gaming of the system: Consider giving coarser information regarding the features that were important for this inference</li> 
+              <li>Intellectual property concerns: Consider giving coarser information regarding the features that were important for this inference </li>
+              <li>Lack of interpretability of the model in use: Consider using a more interpretable model for human-centered prediction</li>
+              </ul>
+               </p>
+
+              <h4>Error Correction</h4>
+              <p>Users should be able to mark inferences as incorrect. These can then be reviewed by humans and the corrected data can be incorporated as training data.</p>
+
+              <h4>Opt Out</h4>
+              <p>Consider allowing users to turn off prediction/personalization. Be clear about how this will impact users, for example in an inspection, will they be allocated to the highest risk?</p>
+
+              <h4>Data Empowerment</h4>
+              <p>Even if the algorithm is not in error, provide a set of suggestions to help this person if an undesirable inference has been made about them. </p>
+
+              <h4>
+
+
+              </div>
+
+            </div><!-- /.row -->
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+    </div><!-- /.container -->
+
+  </body>
+</html>

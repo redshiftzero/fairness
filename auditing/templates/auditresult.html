@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fairness Report</title>
+
+    <link href="{{ url_for('static', filename='static/template.css') }}" rel="stylesheet">
+
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="home">Algo Audit</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="fairness">Fairness</a></li>
+            <li><a href="transparency">Transparency</a></li>
+            <li><a href="about">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Fairness Audit</h1>
+
+        <p class="lead">Determine how fair your algorithm is with respect to protected groups.</p>
+        <hr>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+    <h1>Result for <code>{{filename}}</code></h1>
+    </div>
+
+    <div class="container">
+
+    <h2>Group Fairness</h2>
+    <div class="well">Group Fairness defines the statistical parity between two groups.</div>
+    <h3>Race <small> {{100*audit["race_gf"]}}% unfair</small></h3>
+    
+   {% if audit["race_gf"] >= 0.80 %}
+    <span class="label label-danger">Danger</span>
+    {% elif audit["race_gf"] >= 0.10 and audit["race_gf"] < 0.80 %}
+    <span class="label label-warning">Warning</span>
+    Difference with respect to race
+    {% else %}
+    <span class="label label-success">Success</span>
+    Statistical parity with respect to race
+    {% endif %}
+
+
+    <h4>{{ audit['race_num_majority'] }} <small>in majority group, </small> {{audit['race_num_majority_pos']}} <small> mapped to positive class</small></h4>
+    <h4>{{ audit['race_num_minority'] }} <small>in minority group, </small> {{audit['race_num_minority_pos']}} <small> mapped to positive class</small></h4>
+
+    <h3>Gender <small> {{100*audit["gender_gf"]|round(2)}}% unfair</small></h3>
+    {% if audit["gender_gf"] >= 0.80 %}
+    <span class="label label-danger">Danger</span>
+    {% elif audit["gender_gf"] >= 0.10 and audit["gender_gf"] < 0.80 %}
+    <span class="label label-warning">Warning</span>
+    Difference with respect to gender
+    {% else %}
+    <span class="label label-success">Success</span>
+    Statistical parity with respect to gender
+    {% endif %}
+
+    <h4>{{ audit['gender_num_majority'] }} <small>in male group, </small> {{audit['gender_num_majority_pos']}} <small>  mapped to positive class</small></h4>
+    <h4>{{ audit['gender_num_minority'] }} <small>in female group, </small> {{audit['gender_num_minority_pos']}} <small>  mapped to positive class</small></h4>
+
+ 
+    <h2>Fair Errors</h2>
+    <div class="well">Measures if errors are concentrated in protected groups.</div>
+    
+    <h3>Race <small> {{100*audit["rel_race_error_rate"]|round(2)}}% unfair</small></h3>
+    
+   {% if audit["rel_race_error_rate"] >= 0.80 %}
+    <span class="label label-danger">Danger</span>
+    Difference with respect to errors across race
+    {% elif audit["rel_race_error_rate"] >= 0.10 and audit["rel_race_error_rate"] < 0.80 %}
+    <span class="label label-warning">Warning</span>
+    Difference with respect to errors across race
+    {% else %}
+    <span class="label label-success">Success</span>
+    Statistical parity with respect to errors across race
+    {% endif %}
+
+    <h4>{{ audit['rel_pos_race_error_rate']|round(2)*100 }}% <small> in majority group are incorrect</small></h4>
+    <h4>{{ audit['rel_neg_race_error_rate']|round(2)*100 }}% <small> in minority group are incorrect</small></h4>
+
+    <h3>Gender <small> {{100*audit["rel_gender_error_rate"]|round(2)}}% unfair</small></h3>
+    
+   {% if audit["rel_gender_error_rate"] >= 0.80 %}
+    <span class="label label-danger">Danger</span>
+    Difference with respect to errors across gender
+    {% elif audit["rel_gender_error_rate"] >= 0.10 and audit["rel_gender_error_rate"] < 0.80 %}
+    <span class="label label-warning">Warning</span>
+    Difference with respect to errors across gender
+    {% else %}
+    <span class="label label-success">Success</span>
+    Statistical parity with respect to errors across gender
+    {% endif %}
+
+    <h4>{{ audit['rel_pos_gender_error_rate']|round(2)*100 }}% <small> in male group are incorrect</small></h4>
+    <h4>{{ audit['rel_neg_gender_error_rate']|round(2)*100 }}% <small> in female group are incorrect</small></h4>
+
+    <h2>Individual Fairness <small>unimplemented</small></h2>
+
+    <div class="well">Individual Fairness determines if similar people are treated similarly.</div>
+
+
+  </body>
+</html>

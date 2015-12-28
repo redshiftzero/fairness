@@ -6,9 +6,11 @@ Algorithms are increasingly being used for decision making and risk assessment i
 
 It is also important to appreciate that discrimination is not necessarily negative. In some cases discrimination is necessary or even desired. Whether each case of discrimination is problematic depends on the situation in question. These metrics also cannot determine if discrimination is intentional or unintentional. 
 
+_WARNING:_ This is a work in progress! Stay tuned. 
+
 ## Metrics
 
-These are a set of metrics contained in `fairness/metrics.py` that can be used to evaluate outputs to see if there is discrimination present with respect to some protected class. 
+These are a set of metrics contained in `fairness/metrics.py` that can be used to examine inputs and outputs to evaluate if there is discrimination present with respect to some protected class. 
 
 ### Disparate Impact
 
@@ -22,9 +24,9 @@ Based on Zemel et al., this metrics characterizes the degree of discrimination b
 
 Also based on Zemel et al., this metric characterizes the degree to which similar people are characterized similarly [TODO]. 
 
-### Relative Error Rates
+### Fairness in Errors
 
-This metric measures if the algorithm in question has a higher error rate with respect to the protected class. Unevenly distributed errors are one way that algorithms can be discriminatory.
+This metric measures if the algorithm in question has a higher error rate with respect to the protected class. Unevenly distributed errors are another way that algorithms can be unfair.
 
 ## Examples
 
@@ -46,6 +48,18 @@ Out[6]: 0.0
 ```
 
 You can infer then that this algorithm is then not-discriminatory with respect to gender.
+
+## Auditing
+
+This is a testing web application contained in `auditing/` enabling simple auditing of model outputs for fairness. 
+
+First, upload your model outputs in csv format: 
+
+![](images/fairness_upload.png)
+
+Next, run the audit and examine each metric. Here is an example for an example model, demonstrating that there may be concerns with respect to the classification of women: 
+
+![](images/example_audit_v1.png)
 
 ## Tests
 
